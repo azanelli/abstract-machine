@@ -1,0 +1,77 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
+
+%immagini
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+%tabelle
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{colortbl}
+
+%collegamenti ipertestuali
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+
+
+\title{Macchina Astratta}
+\author{Andrea Zanelli}
+\date{\today}
+
+
+% INIZIO DOCUMENTO *************************************************************
+\begin{document}
+
+% PRIMA PAGINA *****************************************************************
+\maketitle
+\pagebreak
+
+% INDICE ***********************************************************************
+\tableofcontents
+\pagebreak
+
+% INTRODUZIONE *****************************************************************
+\input{include/introduzione}
+%\pagebreak
+
+% DIRETTIVE ********************************************************************
+\input{include/direttive}
+%\pagebreak
+
+% TIPI *************************************************************************
+\input{include/tipi}
+%\pagebreak
+
+% ISTRUZIONI *******************************************************************
+\input{include/istruzioni}
+%\pagebreak
+
+% STAMPA E LETTURA *************************************************************
+\input{include/stampa_e_lettura}
+%\pagebreak
+
+% IPOTESI INIZIALI *************************************************************
+\input{include/ipotesi_iniziali}
+%\pagebreak
+
+% STRUTTURA E FUNZIONAMENTO GENERALE *******************************************
+\input{include/struttura_e_funzionamento_generale}
+%\pagebreak
+
+% IMPLEMENTAZIONE IN C++ *******************************************************
+\input{include/implementazione}
+%\pagebreak
+
+% ESEMPI ***********************************************************************
+%\input{include/esempi}
+%\pagebreak
+
+% FINE DOCUMENTO ***************************************************************
+\end{document}

@@ -1,0 +1,31 @@
+\section{Ipotesi iniziali}
+\label{sec:ipotesi_iniziali}
+Per l'implementazione della macchina astratta sono state fatte le seguenti ipotesi iniziali:
+
+\begin{enumerate}
+  \item Il programma \`e sintatticamente corretto, percui:
+  \begin{itemize}
+    \item Tutte le direttive sono scritte in modo corretto e sono nella tabella del paragrafo \ref{sec:tabella_direttive}.
+    \item Tutte le istruzioni sono scritte in modo corretto e sono tra le tabelle del paragrafo \ref{sec:tabelle_istruzioni}.
+    \item Tutte le funzioni sono scritte in modo corretto e terminano con un'istruzione ``return''.
+    \item Le lettere dei tipi degli argomenti delle funzioni sono senza spazi fra loro (eventualmente con spazi tra gli argomenti e le parentesi, e tra le parentesi e il nome della funzione e il tipo di ritorno).
+    \item Ogni istruzione (con eventualmente un'etichetta prima dell'istruzione) ed ogni direttiva, sono su una riga e terminano con un a-capo.
+    \item Le etichette hanno nomi univoci all'interno delle funzioni.
+    \item Le etichette non hanno nomi di istruzioni.
+    \item Se \`e presente una etichetta \`e all'inizio della riga.
+    \item Gli argomenti delle istruzioni \texttt{ldc\_w} e \texttt{ldc2\_w} (per mettere elementi sullo stack degli operandi) sono corretti, ovvero sono costanti numeriche comprese tra i range dei tipi \texttt{int} e \texttt{long} rispettivamente, oppure una costante stringa corretta nel caso dell'istruzione \texttt{ldc\_w}.
+  \end{itemize}
+
+  \item Il programma \`e semanticamente corretto, percui:
+  \begin{itemize}
+    \item Gli accessi alle variabili locali (istruzioni ``load'') avvengono solo se si \`e sicuri che sono state inizializzate (con istruzioni ``store'').
+    \item Gli accessi alle variabili locali avvengono rispettando i tipi memorizzati all'interno delle variabili; per esempio, l'istruzione \texttt{iload~2} pu\`o essere fatta solo se nella variabile locale \texttt{2} c'\`e memorizzato un \texttt{int}.
+    \item La variabile globale utilizzata come argomento nelle istruzioni \texttt{putstatic} e \texttt{getstatic} (per l'accesso alle variabili globali) esiste ed \`e stata definita nel testo del programma.
+    \item Le etichette utilizzate come argomenti nelle istruzioni di controllo (es. \texttt{goto label}) esistono all'interno della funzione in cui vengono eseguite.
+    \item L'istruzione di return delle funzioni \`e compatibile con il tipo di ritorno della funzione; ad esempio, se il tipo di ritorno \`e \texttt{S} (short) l'istruzione di return dev'essere \texttt{ireturn}.
+  \end{itemize}
+  \item La stampa viene eseguita rispettando esattamente la sintassi e l'ordine delle istruzioni del paragrafo \ref{sec:stampa}.
+  \item La lettura viene eseguita rispettando esattamente la sintassi e l'ordine delle istruzioni del paragrafo \ref{sec:lettura}
+
+\end{enumerate}
+Il file contenente il programma deve assolutamente rispettare i punti sopra citati per il funzionamento della macchina astratta.

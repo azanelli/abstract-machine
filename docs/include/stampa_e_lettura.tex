@@ -1,0 +1,94 @@
+\section{Stampa e lettura}
+\label{sec:stampa_e_lettura}
+\`E possibile stampare su standard output e leggere da standard input \texttt{int}, \texttt{long}, \texttt{char} e \texttt{String} (costanti stringa).\\
+Di seguito vengono illustrate le istruzioni per stampare e leggere, da notare che ogni istruzioni dev'essere su una riga, terminata da a-capo, nel testo seguente vengono spezzate su pi\`u righe per questioni di spazio.
+
+\subsection{Stampa}
+\label{sec:stampa}
+Con il seguente codice si pu\`o stampare un elemento di tipo \texttt{T} su standard output:
+\begin{verbatim}
+getstatic java/lang/System/out Ljava/io/PrintStream;
+; serie di istruzioni
+invokevirtual java/io/PrintStream/print(T)V
+\end{verbatim}
+Il tipo \texttt{T} pu\`o essere: \texttt{C} per \texttt{char}, \texttt{I} per \texttt{int}, \texttt{J} per \texttt{long} oppure \texttt{Ljava/lang/String;} per le stringhe. La prima istruzione mette sullo stack degli operandi l'elemento \texttt{out}, la seconda (dopo una serie qualunque di istruzioni) chiama la funzione di stampa su standard output. Quando viene eseguita la seconda istruzione, in cima allo stack degli operandi dev'essere presente un elemento di tipo \texttt{T} (che verr\`a stampato), seguito immediatamente dall'elemento \texttt{out}.
+
+\subsubsection*{Esempio}
+Stampa della stringa ``Hello, World!!!'' su std out:
+\begin{verbatim}
+getstatic java/lang/System/out Ljava/io/PrintStream;
+ldc_w "Hello, World!!!"
+invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
+\end{verbatim}
+
+
+\subsection{Lettura}
+\label{sec:lettura}
+Per leggere da input si utilizzano le seguenti serie di istruzioni (rispettivamente per \texttt{char}, \texttt{String}, \texttt{int} e \texttt{long}).
+
+\subsubsection*{Char}
+Legge da input un carattere e lo mette in cima allo stack:
+\begin{verbatim}
+new java/io/BufferedReader
+dup
+new java/io/InputStreamReader
+dup
+getstatic java/lang/System/in Ljava/io/InputStream;
+invokespecial
+    java/io/InputStreamReader/<init> (Ljava/io/InputStream;)V
+invokespecial
+    java/io/BufferedReader/<init> (Ljava/io/Reader;)V
+invokevirtual java/io/BufferedReader/read ()I
+\end{verbatim}
+
+\subsubsection*{String}
+Legge da input una stringa terminata da a-capo e la mette in cima allo stack:
+\begin{verbatim}
+new java/io/BufferedReader
+dup
+new java/io/InputStreamReader
+dup
+getstatic java/lang/System/in Ljava/io/InputStream;
+invokespecial
+    java/io/InputStreamReader/<init> (Ljava/io/InputStream;)V
+invokespecial
+    java/io/BufferedReader/<init> (Ljava/io/Reader;)V
+invokevirtual
+    java/io/BufferedReader/readLine ()Ljava/lang/String;
+\end{verbatim}
+
+\subsubsection*{Int}
+Legge da input un \texttt{int} e lo mette in cima allo stack, se l'input non \`e un numero intero viene messo il valore 0 in cima allo stack, se il numero \`e troppo grande viene troncato al valore massimo del tipo \texttt{int}:
+\begin{verbatim}
+new java/io/BufferedReader
+dup
+new java/io/InputStreamReader
+dup
+getstatic java/lang/System/in Ljava/io/InputStream;
+invokespecial
+    java/io/InputStreamReader/<init> (Ljava/io/InputStream;)V
+invokespecial
+    java/io/BufferedReader/<init> (Ljava/io/Reader;)V
+invokevirtual
+    java/io/BufferedReader/readLine ()Ljava/lang/String;
+invokestatic
+    java/lang/Integer/parseInt (Ljava/lang/String;)I
+\end{verbatim}
+
+\subsubsection*{Long}
+Legge da input un \texttt{long} e lo mette in cima allo stack, se l'input non \`e un numero intero viene messo il valore 0 in cima allo stack, se il numero \`e troppo grande viene troncato al valore massimo del tipo \texttt{long}:
+\begin{verbatim}
+new java/io/BufferedReader
+dup
+new java/io/InputStreamReader
+dup
+getstatic java/lang/System/in Ljava/io/InputStream;
+invokespecial
+    java/io/InputStreamReader/<init> (Ljava/io/InputStream;)V
+invokespecial
+    java/io/BufferedReader/<init> (Ljava/io/Reader;)V
+invokevirtual
+    java/io/BufferedReader/readLine ()Ljava/lang/String;
+invokestatic
+    java/lang/Long/parseLong (Ljava/lang/String;)J
+\end{verbatim}

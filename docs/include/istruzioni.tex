@@ -1,0 +1,469 @@
+\section{Istruzioni}
+\label{sec:istruzioni}
+Chiavi di lettura per le istruzioni:
+{\footnotesize
+\begin{longtable}{>{\ttfamily}p{1cm} p{9.5cm}}
+\toprule
+  a &
+  Slot in cima allo stack (top). Pu\`o contenere \texttt{int} o costanti stringa \\
+
+  b &
+  Secondo slot dello stack. Pu\`o contenere \texttt{int} o costanti stringa \\
+
+  c &
+  Terzo slot dello stack. Pu\`o contenere \texttt{int} o costanti stringa \\
+
+  d &
+  Quarto slot dello stack. Pu\`o contenere \texttt{int} o costanti stringa \\
+
+  ab &
+  Primo e secondo slot dello stack. Usato per tipi \texttt{long} \\
+
+  cd &
+  Terzo e quarto slot dello stack. Usato per tipi \texttt{long} \\
+\bottomrule
+\end{longtable}
+} % end \footnotesize
+
+
+\subsection{Tabelle istruzioni}
+\label{sec:tabelle_istruzioni}
+Di seguito tutte le istruzioni divise per categoria con una breve descrizione. Per maggiori dettagli si rimanda al paragrafo \ref{sec:dettagli_istruzioni}.
+
+\subsubsection*{Aritmetiche}
+\label{sec:aritmetiche}
+{\footnotesize
+\begin{longtable}{p{2cm} p{2cm} p{6.5cm}}
+\toprule
+\rowcolor[gray]{0.9}
+  \textbf{Istruzione} &
+  \textbf{Argomenti} &
+  \textbf{Descrizione} \\
+\toprule
+\endhead
+  \texttt{iadd} &
+  &
+  Somma \texttt{int} (\texttt{b+a})  \\
+
+  \texttt{idiv} &
+  &
+  Divisione \texttt{int} (\texttt{b/a}) \\
+
+  \texttt{imul} &
+  &
+  Moltiplicazione \texttt{int} (\texttt{b*a}) \\
+
+  \texttt{ineg} &
+  &
+  Negazione \texttt{int} (\texttt{-a}) \\
+
+  \texttt{irem} &
+  &
+  Resto divisione \texttt{int} (\texttt{b\%a}) \\
+
+  \texttt{ishl} &
+  &
+  Shift \texttt{int} a sinistra (\texttt{b << a}) \\
+
+  \texttt{ishr} &
+  &
+  Shift \texttt{int} a destra (\texttt{b >> a}) \\
+
+  \texttt{isub} &
+  &
+  Sottrazione \texttt{int} (\texttt{b-a}) \\
+
+  \texttt{ladd} &
+  &
+  Somma \texttt{long} (\texttt{cd+ab})  \\
+
+  \texttt{ldiv} &
+  &
+  Divisione \texttt{long} (\texttt{cd/ab}) \\
+
+  \texttt{lmul} &
+  &
+  Moltiplicazione \texttt{long} (\texttt{cd*ab}) \\
+
+  \texttt{lneg} &
+  &
+  Negazione \texttt{long} (\texttt{-ab}) \\
+
+  \texttt{lrem} &
+  &
+  Resto divisione \texttt{long} (\texttt{cd\%ab}) \\
+
+  \texttt{lshl} &
+  &
+  Shift \texttt{long} a sinistra (\texttt{bc << a}) \\
+
+  \texttt{lshr} &
+  &
+  Shift \texttt{long} a destra (\texttt{bc >> a}) \\
+
+  \texttt{lsub} &
+  &
+  Sottrazione \texttt{long} (\texttt{cd-ab}) \\
+\bottomrule
+\end{longtable}
+} % end \footnotesize
+
+\subsubsection*{Costanti}
+\label{sec:costanti}
+{\footnotesize
+\begin{longtable}{p{2cm} p{2cm} p{6.5cm}}
+\toprule
+\rowcolor[gray]{0.9}
+  \textbf{Istruzione} &
+  \textbf{Argomenti} &
+  \textbf{Descrizione} \\
+\toprule
+\endhead
+  \texttt{ldc\_w} &
+  \texttt{x} &
+  Mette \texttt{x} in cima allo stack (\texttt{int} o \texttt{String})  \\
+  
+  \texttt{ldc2\_w} &
+  \texttt{x} &
+  Mette \texttt{x} in cima allo stack (\texttt{long})  \\
+  
+  \texttt{sipush} &
+  \texttt{n} &
+  Mette \texttt{n} in cima allo stack (\texttt{short})  \\
+\bottomrule
+\end{longtable}
+} % end \footnotesize
+
+\subsubsection*{Controllo}
+\label{sec:controllo}
+{\footnotesize
+\begin{longtable}{p{2cm} p{2cm} p{6.5cm}}
+\toprule
+\rowcolor[gray]{0.9}
+  \textbf{Istruzione} &
+  \textbf{Argomenti} &
+  \textbf{Descrizione} \\
+\toprule
+\endhead
+  \texttt{goto} &
+  \texttt{label} &
+  Salta all'istruzione contrassegnata con \texttt{label} \\
+  
+  \texttt{if\_icmpeq} &
+  \texttt{label} &
+  Salta a \texttt{label} se \texttt{b == a} \\
+  
+  \texttt{if\_icmpge} &
+  \texttt{label} &
+  Salta a \texttt{label} se \texttt{b >= a} \\
+  
+  \texttt{if\_icmpgt} &
+  \texttt{label} &
+  Salta a \texttt{label} se \texttt{b > a} \\
+  
+  \texttt{if\_icmple} &
+  \texttt{label} &
+  Salta a \texttt{label} se \texttt{b <= a} \\
+  
+  \texttt{if\_icmplt} &
+  \texttt{label} &
+  Salta a \texttt{label} se \texttt{b < a} \\
+  
+  \texttt{if\_icmpne} &
+  \texttt{label} &
+  Salta a \texttt{label} se \texttt{b != a} \\
+  
+  \texttt{ifeq} &
+  \texttt{label} &
+  Salta a \texttt{label} se \texttt{a == 0} \\
+  
+  \texttt{ifge} &
+  \texttt{label} &
+  Salta a \texttt{label} se \texttt{a >= 0} \\
+  
+  \texttt{ifgt} &
+  \texttt{label} &
+  Salta a \texttt{label} se \texttt{a > 0} \\
+  
+  \texttt{ifle} &
+  \texttt{label} &
+  Salta a \texttt{label} se \texttt{a <= 0} \\
+  
+  \texttt{iflt} &
+  \texttt{label} &
+  Salta a \texttt{label} se \texttt{a < 0} \\
+  
+  \texttt{ifne} &
+  \texttt{label} &
+  Salta a \texttt{label} se \texttt{a != 0} \\
+  
+  \texttt{ireturn} &
+  &
+  Ritorna un \texttt{int} alla funzione chiamante \\
+  
+  \texttt{lcmp} &
+  &
+  Confronto tra \texttt{long} \\
+  
+  \texttt{lreturn} &
+  &
+  Ritorna un \texttt{long} alla funzione chiamante \\
+  
+  \texttt{nop} &
+  &
+  Non fa' niente \\
+  
+  \texttt{return} &
+  &
+  Ritorna al metodo chiamante \\
+\bottomrule
+\end{longtable}
+} % end \footnotesize
+
+\subsubsection*{Conversione di tipi}
+\label{sec:conversione_di_tipi}
+{\footnotesize
+\begin{longtable}{p{2cm} p{2cm} p{6.5cm}}
+\toprule
+\rowcolor[gray]{0.9}
+  \textbf{Istruzione} &
+  \textbf{Argomenti} &
+  \textbf{Descrizione} \\
+\toprule
+\endhead
+  \texttt{i2c} &
+  &
+  Converte l'\texttt{int} in \texttt{a} in \texttt{char} \\
+
+  \texttt{i2s} &
+  &
+  Converte l'\texttt{int} in \texttt{a} in \texttt{short} \\
+  
+  \texttt{i2l} &
+  &
+  Converte l'\texttt{int} in \texttt{a} in \texttt{long} \\
+  
+  \texttt{l2i} &
+  &
+  Converte il \texttt{long} in \texttt{ab} in \texttt{int} \\
+\bottomrule
+\end{longtable}
+} % end \footnotesize
+
+\subsubsection*{Operazioni sullo stack}
+\label{sec:operazioni_sullo_stack}
+{\footnotesize
+\begin{longtable}{p{2cm} p{2cm} p{6.5cm}}
+\toprule
+\rowcolor[gray]{0.9}
+  \textbf{Istruzione} &
+  \textbf{Argomenti} &
+  \textbf{Descrizione} \\
+\toprule
+\endhead
+  \texttt{dup} &
+  &
+  Duplica \texttt{a} \\
+
+  \texttt{dup2} &
+  &
+  Duplica \texttt{ab} \\
+  
+  \texttt{pop} &
+  &
+  Rimuove \texttt{a} \\
+  
+  \texttt{pop2} &
+  &
+  Rimuove \texttt{ab} \\
+  
+  \texttt{swap} &
+  &
+  Scambia \texttt{a} con \texttt{b} \\
+\bottomrule
+\end{longtable}
+} % end \footnotesize
+
+\subsubsection*{Funzioni e variabili globali}
+\label{sec:funzioni_e_varibili_globali}
+{\footnotesize
+\begin{longtable}{p{2cm} p{2cm} p{6.5cm}}
+\toprule
+\rowcolor[gray]{0.9}
+  \textbf{Istruzione} &
+  \textbf{Argomenti} &
+  \textbf{Descrizione} \\
+\toprule
+\endhead
+  \texttt{getstatic} &
+  \texttt{Main/\textit{f} \textit{d}} &
+  Mette sullo stack \texttt{\textit{f d}} (variabile globale) \\
+
+  \texttt{invokestatic} &
+  \texttt{Main/\textit{m} \textit{d}} &
+  Chiama la funzione \texttt{\textit{m d}} \\
+  
+  \texttt{putstatic} &
+  \texttt{Main/\textit{f} \textit{d}} &
+  Memorizza in \texttt{\textit{f d}} (variabile globale) \\
+\bottomrule
+\end{longtable}
+} % end \footnotesize
+
+\subsubsection*{Variabili}
+\label{sec:variabili}
+{\footnotesize
+\begin{longtable}{p{2cm} p{2cm} p{6.5cm}}
+\toprule
+\rowcolor[gray]{0.9}
+  \textbf{Istruzione} &
+  \textbf{Argomenti} &
+  \textbf{Descrizione} \\
+\toprule
+\endhead
+  \texttt{iload} &
+  \texttt{n} &
+  Mette sullo stack la variabile locale \texttt{n} (\texttt{int}) \\
+
+  \texttt{istore} &
+  \texttt{n} &
+  Mette \texttt{a} nella variabile locale \texttt{n}\\
+  
+  \texttt{lload} &
+  \texttt{n} &
+  Mette sullo stack la variabile locale \texttt{n} (\texttt{long}) \\
+  
+  \texttt{lstore} &
+  \texttt{n} &
+  Mette \texttt{ab} nella variabile locale \texttt{n}\\
+\bottomrule
+\end{longtable}
+} % end \footnotesize
+
+
+\subsection{Dettagli istruzioni}
+\label{sec:dettagli_istruzioni}
+\begin{description}
+  \item[\texttt{dup}:] duplica e mette sullo stack il valore di tipo \texttt{int} in cima allo stack (\texttt{a}).
+
+  \item[\texttt{dup2}:] duplica e mette sullo stack il valore di tipo \texttt{long} in cima allo stack (\texttt{ab}).
+
+  \item[\texttt{getstatic Main/\textit{f} \textit{d}}:] mette in cima allo stack il valore della variabile globale di nome \texttt{\textit{f}} e tipo \texttt{\textit{d}} (vedere la tabella dei tipi: \ref{sec:tabella_tipi}).
+
+  \item[\texttt{goto label}:] salta all'istruzione etichettata con \texttt{label}.
+
+  \item[\texttt{i2c}:] preleva l'\texttt{int} in cima allo stack (\texttt{a}), lo converte in \texttt{char} e mette il risultato in cima allo stack.
+
+  \item[\texttt{i2l}:] preleva l'\texttt{int} in cima allo stack (\texttt{a}), lo converte in \texttt{long} e mette il risultato in cima allo stack.
+
+  \item[\texttt{i2s}:] preleva l'\texttt{int} in cima allo stack (\texttt{a}), lo converte in \texttt{short} e mette il risultato in cima allo stack.
+
+  \item[\texttt{iadd}:] preleva i primi due \texttt{int} in cima allo stack (\texttt{a} e \texttt{b}), esegue la somma tra il secondo e il primo (\texttt{b+a}), mette il risultato (\texttt{int}) sullo stack.
+
+  \item[\texttt{idiv}:] preleva i primi due \texttt{int} in cima allo stack (\texttt{a} e \texttt{b}), esegue la divisione tra il secondo e il primo (\texttt{b/a}), mette il risultato (\texttt{int}) sullo stack.
+
+  \item[\texttt{if\_icmpeq label}:] preleva i primi due \texttt{int} in cima allo stack (\texttt{a} e \texttt{b}), se il secondo \`e uguale al primo (\texttt{b == a}) salta all'istruzione etichettata con \texttt{label}, altrimenti esegue l'istruzione successiva.
+
+  \item[\texttt{if\_icmpge label}:] preleva i primi due \texttt{int} in cima allo stack (\texttt{a} e \texttt{b}), se il secondo \`e maggiore o uguale al primo (\texttt{b >= a}) salta all'istruzione etichettata con \texttt{label}, altrimenti esegue l'istruzione successiva.
+
+  \item[\texttt{if\_icmpgt label}:] preleva i primi due \texttt{int} in cima allo stack (\texttt{a} e \texttt{b}), se il secondo \`e maggiore del primo (\texttt{b > a}) salta all'istruzione etichettata con \texttt{label}, altrimenti esegue l'istruzione successiva.
+
+  \item[\texttt{if\_icmple label}:] preleva i primi due \texttt{int} in cima allo stack (\texttt{a} e \texttt{b}), se il secondo \`e minore o uguale al primo (\texttt{b <= a}) salta all'istruzione etichettata con \texttt{label}, altrimenti esegue l'istruzione successiva.
+
+  \item[\texttt{if\_icmplt label}:] preleva i primi due \texttt{int} in cima allo stack (\texttt{a} e \texttt{b}), se il secondo \`e minore del primo (\texttt{b < a}) salta all'istruzione etichettata con \texttt{label}, altrimenti esegue l'istruzione successiva.
+
+  \item[\texttt{if\_icmpne label}:] preleva i primi due \texttt{int} in cima allo stack (\texttt{a} e \texttt{b}), se il secondo \`e diverso dal primo (\texttt{b != a}) salta all'istruzione etichettata con \texttt{label}, altrimenti esegue l'istruzione successiva.
+
+  \item[\texttt{ifeq label}:] preleva l'\texttt{int} in cima allo stack (\texttt{a}), se \`e uguale a zero (\texttt{a == 0}) salta all'istruzione etichettata con \texttt{label}, altrimenti esegue l'istruzione successiva.
+
+  \item[\texttt{ifge label}:] preleva l'\texttt{int} in cima allo stack (\texttt{a}), se \`e maggiore o uguale a zero (\texttt{a >= 0}) salta all'istruzione etichettata con \texttt{label}, altrimenti esegue l'istruzione successiva.
+
+  \item[\texttt{ifgt label}:] preleva l'\texttt{int} in cima allo stack (\texttt{a}), se \`e maggiore di zero (\texttt{a > 0}) salta all'istruzione etichettata con \texttt{label}, altrimenti esegue l'istruzione successiva.
+
+  \item[\texttt{ifle label}:] preleva l'\texttt{int} in cima allo stack (\texttt{a}), se \`e minore o uguale a zero (\texttt{a <= 0}) salta all'istruzione etichettata con \texttt{label}, altrimenti esegue l'istruzione successiva.
+
+  \item[\texttt{iflt label}:] preleva l'\texttt{int} in cima allo stack (\texttt{a}), se \`e minore di zero (\texttt{a < 0}) salta all'istruzione etichettata con \texttt{label}, altrimenti esegue l'istruzione successiva.
+
+  \item[\texttt{ifne label}:] preleva l'\texttt{int} in cima allo stack (\texttt{a}), se \`e diverso da zero (\texttt{a != 0}) salta all'istruzione etichettata con \texttt{label}, altrimenti esegue l'istruzione successiva.
+
+  \item[\texttt{iload n}:] mette in cima allo stack l'\texttt{int} memorizzato nella variabile locale \texttt{n}.
+
+  \item[\texttt{imul}:] preleva i primi due \texttt{int} in cima allo stack (\texttt{a} e \texttt{b}), esegue il prodotto tra il secondo e il primo (\texttt{b*a}), mette il risultato (\texttt{int}) sullo stack.
+
+  \item[\texttt{ineg}:] preleva l'\texttt{int} in cima allo stack (\texttt{a}), lo nega (\texttt{-a}) e mette il risultato sullo stack.
+
+  \item[\texttt{invokestatic Main/\textit{m} \textit{d}}:] chiama la funzione di nome \texttt{\textit{m}} con descrittore \texttt{\textit{d}} (il descrittore contiene i tipi degli argomenti e il tipo di ritorno della funzione, vedere la tabella dei tipi: \ref{sec:tabella_tipi}) passandogli come parametri (se previsti dalla funzione) i valori sullo stack, in modo che il valore in cima allo stack corrisponde all'ultimo parametro richiesto dalla funzione, il secondo nello stack corrisponde al penultimo parametro, e cos\`i via. Nel corpo della funzione chiamata, i parametri passati vengono inseriti nelle prime variabili locali, quindi il primo parametro sar\`a nella variabile locale \texttt{0}, il secondo in \texttt{1} (supponendo che il primo occupava un solo posto nelle variabili), e cos\`i via. Al termine dell'esecuzione della funzione, se ha un valore di ritorno viene messo in cima allo stack del chiamante.
+
+  \item[\texttt{irem}:] preleva i primi due \texttt{int} in cima allo stack (\texttt{a} e \texttt{b}), calcola il resto della divisione tra il secondo e il primo (\texttt{b\%a}) e mette il risultato (\texttt{int}) sullo stack.
+
+  \item[\texttt{ireturn}:] preleva l'\texttt{int} in cima allo stack (\texttt{a}), termina l'esecuzione della funzione, torna il controllo alla funzione chiamante e mette l'\texttt{int} in cima allo stack. Da utilizzare nelle funzioni che hanno come tipo di ritorno \texttt{I}, \texttt{S} o \texttt{C}.
+
+  \item[\texttt{ishl}:] preleva i primi due \texttt{int} in cima allo stack (\texttt{a} e \texttt{b}), calcola lo shift a sinistra del secondo valore con il primo (\texttt{b} << \texttt{a}) e mette il risultato (\texttt{int}) sullo stack.
+
+  \item[\texttt{ishr}:] preleva i primi due \texttt{int} in cima allo stack (\texttt{a} e \texttt{b}), calcola lo shift a destra del secondo valore con il primo (\texttt{b} >> \texttt{a}) e mette il risultato (\texttt{int}) sullo stack.
+
+  \item[\texttt{istore n}:] preleva l'\texttt{int} in cima allo stack (\texttt{a}), e memorizza il valore nella variabile locale \texttt{n}.
+
+  \item[\texttt{isub}:] preleva i primi due \texttt{int} in cima allo stack (\texttt{a} e \texttt{b}), esegue la sottrazione tra il secondo e il primo (\texttt{b-a}), mette il risultato (\texttt{int}) sullo stack.
+
+  \item[\texttt{l2i}:] preleva il \texttt{long} in cima allo stack \texttt{ab}, lo converte in \texttt{int} e mette il risultato in cima allo stack.
+
+  \item[\texttt{ladd}:] preleva i primi due \texttt{long} in cima allo stack (\texttt{ab} e \texttt{cd}), esegue la somma tra il primo e il secondo (\texttt{ab+cd}) e mette il risultato (\texttt{long}) sullo stack.
+
+  \item[\texttt{lcmp}:] preleva i primi due \texttt{long} in cima allo stack (\texttt{ab} e \texttt{cd}), li confronta, e mette sullo stack il numero 1 (di tipo \texttt{int}) se il secondo valore \`e maggiore del primo (\texttt{cd > ab}), -1 se il secondo \`e minore del primo (\texttt{cd < ab}), 0 se i due valori sono uguali (\texttt{cd == ab}).
+
+  \item[\texttt{ldc\_w x}:] mette in cima allo stack la costante \texttt{x} di tipo \texttt{int} o di tipo \texttt{String} (stringa tra virgolette). Se \texttt{x} \`e di tipo \texttt{int} dev'essere un numero intero compreso tra i valori rappresentati nella tabella dei tipi \ref{sec:tabella_rappresentazioni} a pagina \pageref{sec:tabella_rappresentazioni} (nella riga \texttt{int}). Se \texttt{x} \`e di tipo \texttt{String} dev'essere una stringa valida racchiusa tra virgolette.
+
+  \item[\texttt{ldc2\_w x}:] mette in cima allo stack la costante \texttt{x} di tipo \texttt{long}. La costante \texttt{x} dev'essere un numero intero compreso tra i valori rappresentati nella tabella dei tipi \ref{sec:tabella_rappresentazioni} a pagina \pageref{sec:tabella_rappresentazioni} (nella riga \texttt{long}).
+
+  \item[\texttt{ldiv}:] preleva i primi due \texttt{long} in cima allo stack (\texttt{ab} e \texttt{cd}), esegue la divisione tra il secondo e il primo (\texttt{cd/ab}) e mette il risultato (\texttt{long}) sullo stack.
+
+  \item[\texttt{lload n}:] mette in cima allo stack il \texttt{long} memorizzato nella variabile locale \texttt{n}.
+
+  \item[\texttt{lmul}:] preleva i primi due \texttt{long} in cima allo stack (\texttt{ab} e \texttt{cd}), esegue il prodotto tra il secondo e il primo (\texttt{cd*ab}) e mette il risultato (\texttt{long}) sullo stack.
+
+  \item[\texttt{lneg}:] preleva il \texttt{long} in cima allo stack (\texttt{ab}), lo nega (\texttt{-ab}) e mette il risultato sullo stack.
+
+  \item[\texttt{lrem}:] preleva i primi due \texttt{long} in cima allo stack (\texttt{ab} e \texttt{cd}), calcola il resto della divisione tra il secondo e il primo (\texttt{cd\%ab}) e mette il risultato (\texttt{long}) sullo stack.
+
+  \item[\texttt{lreturn}:] preleva il \texttt{long} in cima allo stack (\texttt{ab}), termina l'esecuzione della funzione, torna il controllo alla funzione chiamante e mette il \texttt{long} in cima allo stack. Da utilizzare nelle funzioni che hanno come tipo di ritorno \texttt{J}.
+
+  \item[\texttt{lshl}:] preleva un \texttt{int} e un \texttt{long} dallo stack (\texttt{a} e \texttt{bc}), calcola lo shift a sinistra del valore di tipo \texttt{long} (\texttt{bc} << \texttt{a}) e mette il risultato (\texttt{long}) sullo stack.
+
+  \item[\texttt{lshr}] preleva un \texttt{int} e un \texttt{long} dallo stack (\texttt{a} e \texttt{bc}), calcola lo shift a destra del valore di tipo \texttt{long} (\texttt{bc} >> \texttt{a}) e mette il risultato (\texttt{long}) sullo stack.
+
+  \item[\texttt{lstore n}:] preleva il \texttt{long} in cima allo stack (\texttt{ab}), e memorizza il valore nella variabile locale \texttt{n} (\textbf{nota}: un long occupa due posizioni nelle variabili locali).
+
+  \item[\texttt{lsub}:] preleva i primi due \texttt{long} in cima allo stack (\texttt{ab} e \texttt{cd}), esegue la sottrazione tra il secondo e il primo (\texttt{cd-ab}) e mette il risultato (\texttt{long}) sullo stack.
+
+  \item[\texttt{nop}:] non fa niente.
+
+  \item[\texttt{pop}:] toglie il valore nel primo slot in cima allo stack (\texttt{a}).
+
+  \item[\texttt{pop2}:] toglie i valori nei primi due slot in cima allo stack (\texttt{ab}).
+
+  \item[\texttt{putstatic Main/\textit{f} \textit{d}}:] mette nella variabile globale di nome \texttt{\textit{f}} e tipo \texttt{\textit{d}} il valore in cima allo stack.
+
+  \item[\texttt{return}:] interrompe l'esecuzione della funzione e torna il controllo alla funzione chiamante. Da utilizzare nelle funzioni che hanno come tipo di ritorno \texttt{V}.
+
+  \item[\texttt{sipush n}:] converte la costante numerica \texttt{n} in \texttt{short} (valore da -32.768 a 32767) e la mette in cima allo stack.
+
+  \item[\texttt{swap}:] scambia il valore del primo slot (\texttt{a}) sullo stack con il secondo (\texttt{b}).
+\end{description}
+
+
+\subsection{Etichette}
+\label{sec:etichette}
+Le etichette vengono utilizzate dalle istruzioni di controllo per ``saltare'', eventualmente dopo la verifica di una certa condizione, ad una determinata istruzione. Le etichette hanno le seguenti caratteristiche:
+\begin{itemize}
+  \item Sono nella forma \texttt{\textit{<nome>}:}.
+  \item Devono essere all'inizio della riga, con un'istruzione di seguito o nella riga successiva.
+  \item Il nome dev'essere unico all'interno di una funzione.
+  \item Il nome \`e composto da caratteri alfanumerici.
+  \item Non possono avere il nome di un'istruzione.
+\end{itemize}
+\subsubsection*{Esempio}
+\begin{verbatim}
+goto label
+label: ldc_w 1
+\end{verbatim}

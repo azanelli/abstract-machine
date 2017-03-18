@@ -1,0 +1,111 @@
+\section{Direttive}
+\label{sec:direttive}
+Le direttive vengono utilizzate per definire l'inizio e la fine del programma, per dichirare le variabili globali e le funzioni.
+
+\subsection{Tabella direttive}
+\label{sec:tabella_direttive}
+{\footnotesize
+\begin{tabularx}{\columnwidth}{l X}
+\toprule
+\rowcolor[gray]{0.9}
+  \textbf{Direttiva} &
+  \textbf{Descrizione} \\
+\toprule
+  \texttt{.class~public Main} &
+  Inizio del programma \\
+\midrule
+  \texttt{.super~java/lang/Object} &
+  Inizio del programma (da mettere subito dopo \texttt{.class~public Main}) \\
+\midrule
+  \texttt{.end~class} &
+  Fine del programma \\
+\midrule
+  \texttt{.field public static \textit{f} \textit{d}} &
+  Variabile globale \texttt{\textit{f}} \\
+\midrule
+  \texttt{.method public static \textit{m} \textit{d}} &
+  Inizio della funzione \texttt{\textit{m}} \\
+\midrule
+  \texttt{.end method} &
+  Fine della funzione \\
+\bottomrule
+\end{tabularx}
+} % end \footnotesize
+
+\subsection{Inizio e fine programma}
+Un programma ha inizio dopo le due seguenti direttive
+\begin{quote}
+  \texttt{.class public Main} \\
+  \texttt{.super java/lang/Object}
+\end{quote}
+e finisce con la direttiva
+\begin{quote}
+  \texttt{.end class}
+\end{quote}
+Fra queste direttive di inizio e fine del programma vengono definite le funzioni e le variabili globali. Ogni scritta prima di \texttt{.class~public Main} e dopo \texttt{.end~class} \`e considerata errore.
+\subsubsection*{Esempio}
+\begin{verbatim}
+.class public Main
+.super java/lang/Object
+  ; funzioni e variabili globali
+.end class
+\end{verbatim}
+
+\subsection{Variabili globali}
+Le variabili globali si definiscono con la direttiva
+\begin{quote}
+  \texttt{.field public static \textit{fieldname} \textit{descriptor}}
+\end{quote}
+dove \texttt{\textit{fieldname}} \`e il nome della variabile e \texttt{\textit{descriptor}} \`e il tipo della variabile (vedere tabella dei tipi: \ref{sec:tabella_tipi}).
+\subsubsection*{Esempio}
+Variabile globale di nome \texttt{numberOfElements} e di tipo \texttt{int}:
+\begin{verbatim}
+.field public static numberOfElements I
+\end{verbatim}
+
+\subsection{Funzioni}
+Per la dichiarazione di una funzione e per indicarne l'inizio si usa la direttiva
+\begin{quote}
+  \texttt{.method public static \textit{methodname} \textit{descriptor}}
+\end{quote}
+dove \texttt{\textit{methodname}} \`e il nome della funzione e \texttt{\textit{decriptor}} descrive gli argomenti e il tipo di ritorno della funzione (vedere la tabella dei tipi: \ref{tab:tabella_tipi}). \\
+Per indicare la fine della definizione della funzione si usa la direttiva
+\begin{quote}
+  \texttt{.end method}
+\end{quote}
+Fra le direttive \texttt{.method} e \texttt{.end~method} vi sono le istruzioni della funzione (vedere le tabelle delle istruzioni nel paragrafo \ref{sec:tabelle_istruzioni}).
+\subsubsection*{Esempio}
+Funzione di nome \texttt{icalc} che prende come argomenti quattro interi e ritorna un intero
+\begin{verbatim}
+.method public static icalc(IIII)I
+  ; serie di istruzioni
+.end method
+\end{verbatim}
+
+\subsection{Funzione inizializzatore}
+Se esiste \`e la prima funzione ad essere eseguita ed \`e utilizzata per inizializzare le variabili globali prima di eseguire la funzione principale; ha nome \texttt{<clinit>}, non prende argomenti e ha tipo di ritorno void:
+\begin{quote}
+  \texttt{.method public static <clinit> ()V}
+\end{quote}
+Se nel testo del programma non c'\`e la funzione \texttt{<clinit>} viene eseguita direttamente la funzione principale.
+\subsubsection*{Esempio}
+\begin{verbatim}
+.method public static <clinit> ()V
+  ; serie di istruzioni per inizializzare
+  ; le variabili globali
+  return
+.end method
+\end{verbatim}
+
+\subsection{Funzione principale}
+\`E la funzione principale, la prima ad essere eseguita (se non esiste la funzione inizializzatore) e da cui inizia il programma, ha nome \texttt{main}:
+\begin{quote}
+  \texttt{.method public static main([Ljava/lang/String;)V}
+\end{quote}
+Se nel testo del programma non c'\`e la funzione \texttt{main} viene segnalato un errore e il programma non pu\`o essere eseguito.
+\subsubsection*{Esempio}
+\begin{verbatim}
+.method public static main([Ljava/lang/String;)V
+  return
+.end method
+\end{verbatim}

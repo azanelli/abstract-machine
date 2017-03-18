@@ -1,0 +1,86 @@
+\section{Tipi}
+\label{sec:tipi}
+Nella macchina astratta sono implementati i seguenti tipi:
+\begin{itemize}
+  \item \texttt{int}
+  \item \texttt{long}
+  \item \texttt{short}
+  \item \texttt{char}
+\end{itemize}
+Si possono usare inoltre le ``costanti stringa'' (\texttt{String}) con le seguenti caratteristiche: sono racchiuse da virgolette (''), con l'istruzione \texttt{ldc\_w ''stringa''} si mette la costante stringa in cima allo stack, si possono stampare su output con la funzione di stampa e argomento \texttt{Ljava/lang/String;}, si possono leggere da standard input terminate da un a-capo, \textbf{non} vi sono altre istruzioni di alcun tipo sulle stringhe, \textbf{non} si possono assegnare a variabili globali o locali, \textbf{non} possono essere passate come parametro a funzioni o usate come valore di ritorno.
+
+\subsection{Tabella tipi}
+\label{sec:tabella_tipi}
+Qui sotto la tabella contenente i tipi disponibili nel linguaggio della macchina astratta, con il descrittore corrispondente, cio\`e il simbolo che identifica il tipo, da mettere nelle funzioni (per gli argomenti e il tipo di ritorno) e nelle variabili globali (per il tipo di variabile).
+
+{\footnotesize
+\begin{center}
+\begin{tabular}{p{2cm} l}
+\toprule
+\rowcolor[gray]{0.9}
+  \textbf{Tipo} &
+  \textbf{Descrittore} \\
+\toprule
+  \texttt{char} &
+  \texttt{C} \\
+%\midrule
+  \texttt{int} &
+  \texttt{I} \\
+%\midrule
+  \texttt{long} &
+  \texttt{J} \\
+%\midrule
+  \texttt{short} &
+  \texttt{S} \\
+%\midrule
+  \texttt{void} &
+  \texttt{V} \\
+\bottomrule
+\end{tabular}
+\label{tab:tabella_tipi}
+\end{center}
+} % end \footnotesize
+
+\subsection{Rappresentazioni e conversioni}
+\label{sec:rappresentazioni_e_conversioni}
+Le conversioni da un tipo pi\`u piccolo ad uno pi\`u grande (promozioni), per esempio da \texttt{int} a \texttt{long}, sono fatte normalmente, mantenendo inalterato il valore. Le conversioni da un tipo pi\`u grande, diciamo \texttt{T}, ad uno pi\`u piccolo, diciamo \texttt{t}, per esempio da \texttt{int} a \texttt{short}, vengono fatte nel seguente modo: se il valore di \texttt{T} \`e compreso tra i valori possibili di \texttt{t}, allora la conversione avviene normalmente; se il valore di \texttt{T} \`e maggiore del pi\`u grande valore di \texttt{t}, allora si ricomincia (in modo ciclico) dal valore pi\`u piccolo di \texttt{t}, quindi se, ad esempio, si vuol convertire l'\texttt{int} +32769 in un \texttt{short}, prender\`a il valore -32767, allo stesso modo l'\texttt{int} 98304 prender\`a il valore -32768; se il valore di \texttt{T} \`e minore del pi\`u piccolo valore di \texttt{t}, allora si ricomincia (in modo ciclico) dal valore pi\`u grande di \texttt{t}, quindi se, ad esempio, si vuol convertire l'\texttt{int} -32769 in un \texttt{short}, prender\`a il valore +32767.
+
+\subsubsection*{Tabella rappresentazioni}
+\label{sec:tabella_rappresentazioni}
+Qui sotto la tabella con la rappresentazione binaria ed i valori che pu\`o assumere ogni tipo.
+
+{\footnotesize
+\begin{center}
+\begin{tabular}{l l r r}
+\toprule
+\rowcolor[gray]{0.9}
+  \textbf{Tipo} &
+  \textbf{Rappresentazione} &
+  \textbf{da} &
+  \textbf{a} \\
+\toprule
+  \texttt{int} &
+  32 bit, con segno &
+  -2.147.483.648 &
+  +2.147.483.647 \\
+%\midrule
+  \texttt{short} &
+  16 bit, con segno &
+  -32.768 &
+  +32.767 \\
+%\midrule
+  \texttt{long} &
+  64 bit, con segno &
+  -$2^{63}$ &
+  $+2^{63}-1$ \\
+%\midrule
+  \texttt{char} &
+  16 bit, senza segno &
+  0 &
+  +65.535 \\
+\bottomrule
+\end{tabular}
+\end{center}
+} % end \footnotesize
+
+I tipi \texttt{int}, \texttt{short} e \texttt{char} occupano uno slot sullo stack ed un solo registro nelle variabili locali, il tipo \texttt{long} occupa due slot sullo stack e due registri (consecutivi) nelle variabili locali.

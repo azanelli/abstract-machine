@@ -1,0 +1,34 @@
+\section{Implementazione in C++}
+\label{sec:implementazione}
+La macchina astratta \`e stata implementata in C++, definendo e utilizzando le seguenti classi:
+\begin{description}
+  \item[ActivationRecord:] rappresenta un record di attivazione, con un PC, uno stack degli operandi e un'area per le variabili locali. Fornisce dei metodi per leggere e scrivere nelle variabili locali, per cambiare il valore del PC e per eseguire le operazioni fondamentali (leggere, togliere e mettere un elemento) sullo stack degli operandi.
+  \item[SystemStack:] rappresenta uno stack di sistema, praticamente una pila di ActivationRecord. Fornisce dei metodi per inserire e togliere un record di attivazione e per accedere a quello in cima alla pila.
+  \item[GlobalVariablesArea:] rappresenta l'area dove vengono memorizzate le variabili globali del programma ed il loro valore. Permette di aggiungere variabili globali e di scriverne e leggere il valore.
+  \item[ProgramArea:] in un oggetto di questo tipo viene mantenuto l'insieme delle istruzioni del programma, suddivise per funzione di appartenenza, con un indice univoco associato e consecutivo in modo da poter essere ``puntate'' dal PC di un RdA.
+\end{description}
+Il programma si compone di due funzioni principali di nome \texttt{main} ed \texttt{esecutore}, mantenute rispettivamente nei file \textit{macchina-astratta.cc} e \textit{esecutore.cc}.\\
+Nel file \textit{macchina-astratta.cc} vengono definiti tre oggetti di tipo \texttt{ProgramArea}, \texttt{GlobalVariablesArea} e \texttt{SystemStack} che rappresentano rispettivamente l'\textbf{area programma}, lo spazio per le \textbf{variabili globali} e lo \textbf{stack di sistema}.\\
+La funzione \texttt{main} prende come argomento il nome del file da eseguire (contenente il programma), dopodich\`e esegue i seguenti passi:
+\begin{enumerate}
+  \item Inizializza l'oggetto di tipo \texttt{ProgramArea} e carica le istruzioni del programma al suo interno.
+  \item Inizializza l'oggetto di tipo \texttt{GlobalVariablesArea} e ci mette dentro le variabili globali del programma.
+  \item Se all'interno del programma da eseguire esiste la funzione ``<clinit> ()V'' (per l'inizializzazione delle variabili globali) crea un record di attivazione vuoto nell'oggetto di tipo \texttt{SystemStack} impostando il PC alla prima istruzione di ``<clinit> ()V'' e chiama la funzione \texttt{esecutore}.
+  \item Crea un record di attivazione nell'oggetto di tipo \texttt{SystemStack} e imposta il PC alla prima istruzione della funzione ``main'' del programma da eseguire.
+  \item Passa il controllo alla funzione \texttt{esecutore} che si occupa di eseguire le istruzioni contenute nell'oggetto \texttt{ProgramArea}.
+\end{enumerate}
+La funzione \texttt{esecutore}, finch\`e nell'oggetto \texttt{SystemStack} c'\`e almeno un record di attivazione, esegue i seguenti passi:
+\begin{enumerate}
+  \item Prende il valore del PC del record di attivazione in cima all'oggetto di tipo \texttt{SystemStack}.
+  \item Legge l'istruzione dall'oggetto di tipo \texttt{ProgramArea} "puntata" dal PC.
+  \item Incrementa il PC.
+  \item Esegue l'istruzione chiamando una funzione appropriata.
+\end{enumerate}
+
+\subsection{Compilazione, installazione e documantazione}
+Per compilare e creare l'eseguibile della macchina astratta, o per creare la documentazione attraverso doxygen, \`e possibile dare uno dei seguenti comandi all'interno della directory ``macchina-astratta'' dove sono presenti i file sorgente:
+\begin{itemize}
+  \item \texttt{make}: crea l'eseguibile \texttt{macchina-astratta} dentro la directory ``bin''.
+  \item \texttt{make doc}: crea la documentazione del codice in formato html e pdf dentro la directory ``doc''.
+\end{itemize}
+L'eseguibile \texttt{macchina-astratta} si aspetta come argomento un file, all'interno del quale ci dovr\`a essere il codice del programma da eseguire.
